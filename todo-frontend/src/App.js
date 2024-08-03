@@ -8,19 +8,18 @@ function App() {
   const [editTaskId, setEditTaskId] = useState(null);
   const [editTask, setEditTask] = useState({ title: '', description: '' });
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/tasks')
+  useEffect(() => {https://todoapp-eott.onrender.com')
       .then(response => setTasks(response.data));
   }, []);
 
   const addTask = () => {
-    axios.post('http://localhost:3001/tasks', newTask)
+    axios.post('https://todoapp-eott.onrender.com', newTask)
       .then(response => setTasks([...tasks, response.data]));
     setNewTask({ title: '', description: '' });
   };
 
   const updateTask = () => {
-    axios.put(`http://localhost:3001/tasks/${editTaskId}`, editTask)
+    axios.put(`https://todoapp-eott.onrender.com/${editTaskId}`, editTask)
       .then(response => {
         const updatedTasks = tasks.map(task =>
           task._id === editTaskId ? response.data : task
@@ -32,7 +31,7 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    axios.delete(`http://localhost:3001/tasks/${id}`)
+    axios.delete(`https://todoapp-eott.onrender.com/${id}`)
       .then(() => {
         setTasks(tasks.filter(task => task._id !== id));
       });
